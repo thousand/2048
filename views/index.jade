@@ -7,13 +7,5 @@ block content
     a.restart-button New Game
   include gameGrid
 
-  script(src="js/bind_polyfill.js")
-  script(src="js/classlist_polyfill.js")
-  script(src="js/animframe_polyfill.js")
-  script(src="js/keyboard_input_manager.js")
-  script(src="js/html_actuator.js")
-  script(src="js/grid.js")
-  script(src="js/tile.js")
-  script(src="js/local_storage_manager.js")
-  script(src="js/game_manager.js")
-  script(src="js/application.js")
+block appScript
+  script(src="js/lib/require.js", data-main="/js/multi2048.js")
