@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var stomp = require('stompjs');
+
 var app = express();
 
 // view engine setup
@@ -55,6 +57,10 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+
+// socket junx
+var socket = stomp.overWS('ws://localhost:3000/Socket2048');
 
 
 module.exports = app;

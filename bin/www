@@ -1,9 +1,22 @@
 #!/usr/bin/env node
 var debug = require('debug')('2048');
 var app = require('../app');
+var sock = require('sockJS');
+
+var sockOpts = {sockjs_url: "http://cdn.sockjs.org/sockjs-0.3.min.js"};
+
+var sockServer = sock.createServer(sockOpts);
+
+sockServer.on('connection', function(conn) {
+    conn.on('data', function(message) {
+      conn.write(message);
+    });
+});
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
+
+sockServer.installHandlers( server, { prefix: '/Socket2048' } );
