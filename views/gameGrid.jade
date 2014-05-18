@@ -1,0 +1,14 @@
+div.game-container
+  div.game-message
+    p
+    div.lower
+      a.keep-playing-button Keep going
+      a.retry-button Try again
+
+  div.grid-container
+    -for(var y = 4; y > 0; y--)
+      div.grid-row
+        -for(var x = 4; x > 0; x--)
+          div.grid-cell
+
+  div.tile-container

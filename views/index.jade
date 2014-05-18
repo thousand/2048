@@ -1,5 +1,19 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  include gameHeader
+  .above-game
+    p.game-intro Join the numbers and get to the <strong>2048 tile!</strong>
+    a.restart-button New Game
+  include gameGrid
+
+  script(src="js/bind_polyfill.js")
+  script(src="js/classlist_polyfill.js")
+  script(src="js/animframe_polyfill.js")
+  script(src="js/keyboard_input_manager.js")
+  script(src="js/html_actuator.js")
+  script(src="js/grid.js")
+  script(src="js/tile.js")
+  script(src="js/local_storage_manager.js")
+  script(src="js/game_manager.js")
+  script(src="js/application.js")
