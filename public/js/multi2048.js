@@ -27,6 +27,5 @@ requirejs.config({
 requirejs([ 'app/game_manager', 'app/keyboard_input_manager', 'app/html_actuator', 'app/local_storage_manager', 'app/communication_manager' ],
 function (   GameManager,        KeyboardInputManager,         HTMLActuator,        LocalStorageManager,         CommunicationManager       ) {
 
-  new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager);
-  window.comms = new CommunicationManager();
+  new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager, CommunicationManager);
 });

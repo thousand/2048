@@ -7,9 +7,9 @@ define(['sockjs'], function (Sock) {
     , _execute
   ;
 
-  _execute = function (handlers) {
+  _execute = function (handlers, data) {
     for ( var i = 0, handler = handlers[i]; i < handlers.length; i++, handler = handlers[i] ) {
-      handler.method();
+      handler.method(data);
     }
   };
 
@@ -20,17 +20,15 @@ define(['sockjs'], function (Sock) {
     sock.onopen = function () { console.log('[*] open!', sock.protocol) };
     sock.onclose = function () { console.log('[*] closed!') };
 
-    sock.onmessage = this.delegator.bind(this);
-
-
+    sock.onmessage = this.delegate.bind(this);
   };
 
-  self.delegator = function (e) {
+  self.delegate = function (e) {
     console.log('[.] ' + e.data);
 
-    var chunk = JSON.parse(e.data);
+    var message = JSON.parse(e.data);
 
-    _execute( this.listeners[ chunk.messageType ] );
+    _execute( this.listeners[ message.messageType ], message.data );
 
   };
 
